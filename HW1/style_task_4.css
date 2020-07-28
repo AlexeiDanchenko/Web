@@ -8,26 +8,6 @@ html, body {
 	display: flex; 
 	flex-direction: column; */
 }
-/*
-body {
-	margin: 0;
-	padding: 15px;
-	display: flex;  
-	flex-direction: column;
-	flex: auto; 
-}
-*/
-
-
-
-.box_middle {
-    width: 100%;
-    height: 75%;
-    margin: 0 auto;
-    display: flex; 
-    justify-content: space-around;
-    flex-direction: column;
-}
 
 .box_main {
     display: flex;
@@ -35,12 +15,13 @@ body {
     height: 90%;
     justify-content: space-between;
     flex-direction: column;  
+    margin: 5px;
 }
 
 .box {
     width: 100%;
     height: 20%;
-    margin: 0 auto;
+    margin: 5px;  
     display: flex; 
  /*   justify-content: space-around;    */
 }
@@ -48,25 +29,15 @@ body {
 .box_center{
     width: 100%;
     height: 50%;
-    margin: 0 auto;
+    margin: 5px;
     display: flex;
 }
 
 .box_bottom {
     width: 100%;
-    height: 20%;
-    margin: 0 auto;
+    height: 30%;
+    margin: 5px;   
     display: flex; 
-}
-
-.box-base {
-    background: #222;
-    width: 30%;
-    font-size: 5rem;
-    color: #eee;
-    flex: auto;
-    display: -webkit-flex;
-    align-items: center;
 }
 
 .box-side {
@@ -77,53 +48,11 @@ body {
     flex-direction: column;
 }
 
-.box-itm {
-    background: #222;
-    min-height: 200px;
-    font-size: 5rem;
-    color: #eee;
-    margin-bottom: 30px;
-    flex: auto;
-    display: -webkit-flex;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.box-itm:last-child {
-	margin-bottom: 0;
-}
-
-.flex_row_1{
-    display: flex;
-    overflow: auto;
-    text-align: center;
-    justify-content: space-around;
-}
-.flex_row_1 div:nth-child(1) {
-    width: 30%;
-    height: 25%;
-    background: yellow;
-  }
-  .flex_row_1 div:nth-child(2) {
-    width: 60%;
-    height: 25%;
-    background: purple;
-  }
-
-.flex-flex_row_1 > div {
-    background-color: #f1f1f1;
-    margin: 10px;
-    padding: 20px;
-    font-size: 30px;
-  }
-
-
 .orange{
     background-color: orange;
     width: 60%;
     height: 100%;
-    margin: 5px;
+    margin: 5px; 
 }
 
 .brown{
@@ -137,7 +66,7 @@ body {
     background-color: blue;
     width: 33%;
     height: 100%;
-    margin: 5px;
+    margin: 5px;    
 }
 
 .purple{
@@ -158,5 +87,5 @@ body {
     background-color: green;
     width: 100%;
     height: 100%;  
-    margin: 5px; 
+    margin: 5px;
 }
