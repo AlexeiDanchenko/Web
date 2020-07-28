@@ -22,6 +22,7 @@ html, body {
     width: 100%;
     height: 20%;
     margin: 5px;  
+    margin-bottom: 10px;
     display: flex; 
  /*   justify-content: space-around;    */
 }
@@ -90,6 +91,10 @@ html, body {
     margin: 5px;
 }
 
+.empty{
+    display: none;    
+}
+
 @media screen and (max-width: 992px) {
     .orange{
         background-color: purple;
@@ -146,5 +151,66 @@ html, body {
         height: 35%;
         margin: 5px;   
         display: flex; 
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .orange{
+        display: none; 
+    }
+    
+    .brown{
+        display: none;
+    }   
+    
+    .blue{
+        display: none;    
+    }
+    
+    .purple{
+        display: none;
+    }
+    
+    .red{
+        background-color: green;
+        width: 40%;
+        height: 100%; 
+        margin: 5px;
+    }
+    
+    .green{
+        background-color: purple;
+        width: 40%;
+        height: 20%;  
+        margin: 5px;
+    }
+
+    .empty{
+        background-color: red;
+        width: 40%;
+        height: 60%;  
+        margin: 5px;
+        display: flex;
+    }
+
+    .box_center{
+        width: 100%;
+        height: 100%;
+        margin-top: 5px;
+        margin-bottom: 20%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .box_bottom {
+        display: none; 
+    }
+    .box {
+        width: 100%;
+        height: 20%;
+        margin: 5px;  
+        margin-bottom: 10px;
+        display: flex; 
+     /*   justify-content: space-around;    */
     }
   }
