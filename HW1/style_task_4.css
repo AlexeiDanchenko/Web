@@ -4,9 +4,6 @@ html, body {
     height: 100%;
     width: 100%;
     justify-content: space-around;
-/*	display: -webkit-flex;  
-	display: flex; 
-	flex-direction: column; */
 }
 
 .box_main {
@@ -24,7 +21,6 @@ html, body {
     margin: 5px;  
     margin-bottom: 10px;
     display: flex; 
- /*   justify-content: space-around;    */
 }
 
 .box_center{
@@ -118,10 +114,6 @@ html, body {
     }
     
     .purple{
-        background-color: purple;
-        width: 33%;
-        height: 100%;
-        margin: 5px;
         display: none;
     }
     
@@ -211,6 +203,5 @@ html, body {
         margin: 5px;  
         margin-bottom: 10px;
         display: flex; 
-     /*   justify-content: space-around;    */
     }
   }
