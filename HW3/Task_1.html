@@ -5,8 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HW3 Task 1</title>
     <script src="./task1.js"></script>
+    <link rel="stylesheet" href="./test.css">
 </head>
 <body>
-    
+    <div>
+        <p>Table of plants</p>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Species</th>
+                <th>Age</th>
+                <th>Class</th>
+                <th>Inflorescence class</th>
+                <th>Hazard class</th>
+                <th>Application</th>
+                <th>Discoverer</th>
+                <th>Place of growth</th>
+            </tr>
+        </table>
+        <div>
+
+        </div>
+
+        <div class="card-header" id="headingOne">
+            <button id="buttonCreate">Create </button>
+            <button id="buttonUpdate">Update </button>
+            <button id="buttonDelete">Delete </button>
+            <button class="open-button" onclick="openForm()">Подпишитесь</button>
+        </div>
+
+        <div class="form-popup" id="myForm">
+            <form action="#" class="form-container">
+              <h1>Подписаться</h1>
+              <label for="name"><b>Имя</b></label>
+              <input type="text" placeholder="Ваше имя" name="name" required>
+              <label for="email"><b>Е-мейл</b></label>
+              <input type="text" placeholder="Ваш е-мейл" name="email" required>
+              <button type="submit" class="btn">Отправить</button>
+              <button type="button" class="btn cancel" onclick="closeForm()">Закрыть</button>
+            </form>
+          </div>
+
+          
 </body>
 </html>
