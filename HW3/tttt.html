@@ -1,312 +1,156 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>HTML 5, CSS 3, jQuery Log-in & Registration</title>
-<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="./ttt.js"></script>
-/*
-<script>
-
-$(document).ready(function() {
-    $("#loginLink").click(function( event ){
-           event.preventDefault();
-           $(".overlay").fadeToggle("fast");
-     });
-
-     $("#lll").click(function( event ){
-           event.preventDefault();
-           $(".overlaySpruce").fadeToggle("fast");
-     });
-
-    $(".overlayLink").click(function(event){
-        event.preventDefault();
-        var action = $(this).attr('data-action');
-
-        $("#loginTarget").load("ajax/" + action);
-
-        $(".overlay").fadeToggle("fast");
-    });
-
-    $(".close").click(function(){
-        $(".overlay").fadeToggle("fast");
-    });
-
-    $(document).keyup(function(e) {
-        if(e.keyCode == 27 && $(".overlay").css("display") != "none" ) { 
-            event.preventDefault();
-            $(".overlay").fadeToggle("fast");
-        }
-    });
-});
-</script>
-*/
-<style>
-/*
-*    RESET
-*/
-*{
-    box-sizing: border-box;
-    margin: 0;
-    outline: none;
-    padding: 0;
-}
-
-*:after,
-*:before {
-    box-sizing: border-box;
-}
-
-/*
-*    Общие стили
-*/
-html {
-    font-size: 16px;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    text-rendering: optimizeLegibility;
-}
-
-body {
-    background-color: #f3f3f3;
-    color: rgb(165,165,165);
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
-    font-weight: 400;
-}
-
-a.close {
-    background-color: rgb(204,204,204);
-    border-radius: 50%;
-    color: rgb(255,255,255);
-    display: block;
-    font-family: 'Varela Round', sans-serif;
-    font-size: .8em;
-    padding: .2em .5em;
-    position: absolute;
-    top: 1.25rem;
-    transition: all 400ms ease;
-    right: 1.25rem;
-}
-
-    a.close:hover {
-        background-color: #1bc5b3;
-        cursor: pointer;
-    }
-
-/*
-*    Панель входа
-*/
-div.overlay {
-    background-color: rgba(0,0,0,.25);
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-    div.overlay > div.login-wrapper {
-        align-self: center;
-        background-color: rgba(0,0,0,.25);
-        border-radius: 2px;
-        padding: 6px;
-        width: 450px;
-    }
-
-        div.overlay > div.login-wrapper > div.login-content {
-            background-color: rgb(255,255,255);
-            border-radius: 2px;
-            padding: 24px;    
-            position: relative;
-        }
-
-            div.overlay > div.login-wrapper > div.login-content > h3 {
-                color: rgb(0,0,0);
-                font-family: 'Varela Round', sans-serif;
-                font-size: 1.8em;
-                margin: 0 0 1.25em;
-                padding: 0;
-            }
-/*
-*    Форма
-*/
-form label {
-    color: rgb(0,0,0);
-    display: block;
-    font-family: 'Varela Round', sans-serif;
-    font-size: 0.75em;
-    margin: .75em 0;    
-}
-
-    form input[type="text"],
-    form input[type="email"],
-    form input[type="number"],
-    form input[type="search"],
-    form input[type="password"],
-    form textarea {
-        background-color: rgb(255,255,255);
-        border: 1px solid rgb( 186, 186, 186 );
-        border-radius: 1px;
-        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
-        display: block;
-        font-size: .65em;
-        margin: 6px 0 12px 0;
-        padding: .8em .55em;    
-        text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
-        transition: all 400ms ease;
-        width: 90%;
-    }
-
-    form input[type="text"]:focus,
-    form input[type="email"]:focus,
-    form input[type="number"]:focus,
-    form input[type="search"]:focus,
-    form input[type="password"]:focus,
-    form textarea:focus,
-    form select:focus { 
-        border-color: #4195fc;
-        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px #4195fc;
-    }
-
-        form input[type="text"]:invalid:focus,
-        form input[type="email"]:invalid:focus,
-        form input[type="number"]:invalid:focus,
-        form input[type="search"]:invalid:focus,
-        form input[type="password"]:invalid:focus,
-        form textarea:invalid:focus,
-        form select:invalid:focus { 
-            border-color: rgb(248,66,66);
-            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px rgb(248,66,66);
-        }
-
-form button {
-    background-color: #50c1e9;
-    border: 1px solid rgba(0,0,0,.1);
-    color: rgb(255,255,255);
-    font-family: 'Varela Round', sans-serif;
-    font-size: .45em;
-    padding: .55em .9em;
-    transition: all 400ms ease;    
-}
-
-    form button:hover {
-        background-color: #1bc5b3;
-        cursor: pointer;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="./ttt.js" defer></script>
 </head>
 
 <body>
-    <div class="card-header" id="headingOne">
-        <button id="buttonCreate">Create </button>
-        <button id="buttonUpdate">Update </button>
-        <button id="buttonDelete">Delete </button>
-        <button class="open-button" onclick="openForm()">Подпишитесь</button>
-    </div>
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+                        Create
+                    </button>
+                </h5>
+            </div>
 
-<div class="test"></div>
-<p>Here's some content.</p>
-<a href="login.php" id="loginLink">Login</a>
-<ul>
-    <li><a href="login.php" class="overlayLink1" data-action="login-form.html" id="lll">Log-in</a></li>
-    <li><a href="register.php" class="overlayLink2" data-action="registration-form.html">Register</a></li>
-</ul>
-<div class="overlay" style="display: none;" id="fernForm" >
-    <div class="login-wrapper">
-        <div class="login-content" id="loginTarget">
-            <a class="close">x</a>
-            <h3>Enter plant</h3>
-            <form method="post" action="login.php" id="mainForm">
-                <label for="Name:">
-                    name:
-                    <input type="text" id="username" />
-                </label>
-                <label for="description">
-                    description:
-                    <input type="text" id="description"/>
-                </label>
-                <label for="species">
-                    species:
-                    <input type="text" id="species"/>
-                </label>
-                <label for="plant_class">
-                    class:
-                    <input type="text" id="plant_class"/>
-                </label>
-                <label for="application">
-                    Application:
-                    <input type="text" id="application"/>
-                </label>
-                <label for="discoverer">
-                    Discoverer:
-                    <input type="text" id="discoverer"/>
-                </label>
-                <label for="age">
-                    Age:
-                    <input type="number" id="age"/>
-                </label>
-                <label for="place_of_growth">
-                    Place of growth:
-                    <input type="text" id="place_of_growth"/>
-                </label>
-                <button type="submitFern">Submit</button>
-                <button type="cancel">Cancel</button>
-            </form>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <form id='createForm'>
+                        <div class="form-group">
+                            <label for="cmanufacturer">Manufacturer</label>
+                            <input type="text" class="form-control" id="cmanufacturer" aria-describedby="emailHelp"
+                                placeholder="Enter manufacturer name">
+                        </div>
+                        <div class="form-group">
+                            <label for="ccoreNumber">Cores number</label>
+                            <input type="number" min=1 class="form-control" id="ccoreNumber" placeholder="Enter number of cores">
+                        </div>
+                        <div class="form-group">
+                            <label for="cthreadNumber">Thread number</label>
+                            <input type="number" min=1 class="form-control" id="cthreadNumber" placeholder="Enter number of thread per core">
+                        </div>
+                        <div class="form-group">
+                            <label for="cfrequency">Frequency</label>
+                            <input type="number" step=".1" min=1 class="form-control" id="cfrequency" placeholder="Enter frequency per core">
+                        </div>
+
+                        <button type="submit" id='cbutton' class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button id='rbutton' class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                        Read
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Manufacturer</th>
+                                <th scope="col">Cores number</th>
+                                <th scope="col">Thread number</th>
+                                <th scope="col">Frequency</th>
+                            </tr>
+                        </thead>
+                        <tbody id='rTBody'>
+                            <!--  <tr>
+                                <th scope="row">1</th>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                            </tr> -->
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button id='pubutton' class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                        aria-expanded="false" aria-controls="collapseThree">
+                        Update
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <form id='updateForm'>
+                        <div class="form-group">
+                            <label for="uid">ID</label>
+                            <select id="uid" class="form-control">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="umanufacturer">Manufacturer</label>
+                            <input type="text" class="form-control" id="umanufacturer" placeholder="Enter manufacturer name">
+                        </div>
+                        <div class="form-group">
+                            <label for="ucoreNumber">Cores number</label>
+                            <input type="number" min=1 class="form-control" id="ucoreNumber" placeholder="Enter number of cores">
+                        </div>
+                        <div class="form-group">
+                            <label for="uthreadNumber">Thread number</label>
+                            <input type="number" min=1 class="form-control" id="uthreadNumber" placeholder="Enter number of thread per core">
+                        </div>
+                        <div class="form-group">
+                            <label for="ufrequency">Frequency</label>
+                            <input type="number" step=".1" min=1 class="form-control" id="ufrequency" placeholder="Enter frequency per core">
+                        </div>
+
+                        <button type="submit" id='ubutton' class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingFour">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour"
+                        aria-expanded="false" aria-controls="collapseFour">
+                        Delete
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body">
+                    <form id='deleteForm'>
+                        <div class="form-group">
+                            <label for="did">ID</label>
+                            <input type="text" class="form-control" id="did" placeholder="Enter ID">
+                        </div>
+                        <button type="submit" id='dbutton' class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
-<div class="overlaySpruce" style="display: none;" id="spruceForm" >
-    <div class="login-wrapper">
-        <div class="login-content" id="loginTarget">
-            <a class="close">x</a>
-            <h3>Enter plant</h3>
-            <form method="post" action="login.php">
-                <label for="Name:">
-                    name:
-                    <input type="text" id="username" />
-                </label>
-                <label for="description">
-                    description:
-                    <input type="text" id="description"/>
-                </label>
-                <label for="species">
-                    species:
-                    <input type="text" id="species"/>
-                </label>
-                <label for="plant_class">
-                    class:
-                    <input type="text" id="plant_class"/>
-                </label>
-                <label for="application">
-                    Application:
-                    <input type="text" id="application"/>
-                </label>
-                <label for="discoverer">
-                    Discoverer:
-                    <input type="text" id="discoverer"/>
-                </label>
-                <label for="hazard_Class">
-                    Hazard class:
-                    <input type="number" id="hazard_Class"/>
-                </label>
-                <label for="inflorescence_class">
-                    Inflorescence class:
-                    <input type="text" id="inflorescence_class"/>
-                </label>
-                <label for="habitat">
-                    Habitat:
-                    <input type="text" id="habitat"/>
-                </label>
-                <button type="submitSpruce">Submit</button>
-                <button type="cancel">Cancel</button>
-            </form>
-        </div>
-    </div>
-</div>
 </body>
+
 </html>

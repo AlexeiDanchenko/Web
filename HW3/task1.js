@@ -1,6 +1,7 @@
 var fermArray = [];
 var spruceArray = [];
 var latestId = 0;
+var bIsEdit = true;
 
 function midFunc(){
     alert('midFunc');
@@ -195,18 +196,19 @@ function closeForm(){
     document.getElementById('fernForm').style.display='none';
 }
 
-function updateForm(){
-    alert('Update Form!');
-
+function showAllElements(){
     document.getElementById('nameArray').innerHTML = null;
-    
-    document.getElementById('editForm').style.display='block';
-    document.getElementById('editLabel').innerHTML = 'Edit plant';
-
     var e = document.getElementById('nameArray');
+
+    var bExist = false;
 
     for (var i = 0; i < fermArray.length; i++)
     {
+        if(!bExist && i == 0){
+            onViewEditInfo(fermArray[i]);
+            bExist = true;
+        } 
+
         var option = document.createElement('option');
         option.innerHTML = fermArray[i].name;
         option.keys = fermArray[i].id;
@@ -215,17 +217,39 @@ function updateForm(){
 
     for (var i = 0; i < spruceArray.length; i++)
     {
+        if(!bExist && i == 0){
+            onViewEditInfo(spruceArray[i]);
+            bExist = true;
+        }
+           
         var option = document.createElement('option');
         option.innerHTML = spruceArray[i].name;
+        option.keys = spruceArray[i].id;
         e.appendChild(option);
     }
 }
 
+function updateForm(){
+    alert('Update Form!');
+    bIsEdit = true;
+
+    showAllElements();
+    
+    document.getElementById('editForm').style.display='block';
+    document.getElementById('editLabel').innerHTML = 'Edit plant';  
+    document.getElementById('buttonSubmitEdit').innerHTML = 'Edit';
+}
+
 function deleteForm(){
     alert('Delete Form!');
+    console.log('fernArray = ' + fermArray.length);
+    console.log('spruceArray = ' + spruceArray.length);
+    bIsEdit = false;
+    showAllElements();
 
     document.getElementById('editForm').style.display='block';
     document.getElementById('editLabel').innerHTML = 'Delete plant';
+    document.getElementById('buttonSubmitEdit').innerHTML = 'Delete';
 }
 
 function onPrepareInfo(){
@@ -275,18 +299,61 @@ function submitFormEditfunc(){
     console.log('Submit Edit form');
     console.log(document.getElementById("nameArray").options[document.getElementById("nameArray").selectedIndex].value);
     console.log(document.getElementById("nameArray").options[document.getElementById("nameArray").selectedIndex].keys);
+
+    if(!bIsEdit)
+    {
+        for(var i = 0; i < spruceArray.length; i++){
+            if(spruceArray[i].id == document.getElementById("nameArray").options[document.getElementById("nameArray").selectedIndex].keys){
+                spruceArray.splice(i, 1);
+                break;
+            }
+        }
+    
+        for(var i = 0; i < fermArray.length; i++){
+            if(fermArray[i].id == document.getElementById("nameArray").options[document.getElementById("nameArray").selectedIndex].keys){
+                fermArray.splice(i, 1);
+                break;
+            }
+        }
+        document.getElementById('formEdit').reset();
+        deleteForm();
+    }
+    else{
+        var editObj = getUpdatingElement();
+
+        for(var i = 0; i < spruceArray.length; i++){
+            if(spruceArray[i].id == editObj.id){
+                spruceArray.splice(i, 1, editObj);
+                break;
+            }
+        }
+    
+        for(var i = 0; i < fermArray.length; i++){
+            if(fermArray[i].id == editObj.id){
+                fermArray.splice(i, 1, editObj);
+                break;
+            }
+        }
+
+        document.getElementById('formEdit').reset();
+        updateForm();
+    }   
 }
 
 function checkFern(){
+    console.log("checkFern");
     document.getElementById('fernFields').hidden             = false;
     document.getElementById('spruceFields').hidden             = true;
     document.getElementById("spruceRB").checked = false;
+    document.getElementById("fernRB").checked = true;
 }
 
 function checkSpruce(){
+    console.log("checkSpruce");
     document.getElementById('spruceFields').hidden             = false;
     document.getElementById('fernFields').hidden             = true;
     document.getElementById("fernRB").checked = false;
+    document.getElementById("spruceRB").checked = true;
 }
 
 function addFern(){  
@@ -329,20 +396,8 @@ function addSpruce(){
     spruceObj1.setHabitat(document.getElementById('habitat').value);
 
     spruceObj1 = spruceObj1.getObj();
-/*
-   var spruceObj1 = new spruceClass(
-      document.getElementById('username').value,
-      document.getElementById('description').value,
-      document.getElementById('species').value,
-      document.getElementById('plant_class').value,
-      document.getElementById("application").options[document.getElementById("application").selectedIndex].value,
-      document.getElementById('discoverer').value,
-      document.getElementById('hazard_class').value,
-      document.getElementById('inflorescence_class').value,
-      document.getElementById('habitat').value
-  );
-*/
-  spruceArray.push(spruceObj1);
+
+    spruceArray.push(spruceObj1);
  
   for(var i = 0; i < spruceArray.length; i++){
       console.log(spruceArray[i]);
@@ -436,6 +491,133 @@ function onViewTable(){
     console.log(JSON.parse(JSON.stringify(spruceArray)));
 }
 
+function onEditName(){
+    console.log("onEditName");
+    console.log(document.getElementById("nameArray").options[document.getElementById("nameArray").selectedIndex].keys);
+
+    for(var i =0 ; i < spruceArray.length; i++)
+    {
+        console.log(spruceArray[i].id);
+        if(spruceArray[i].id == document.getElementById("nameArray").options[document.getElementById("nameArray").selectedIndex].keys)
+        {
+            onViewEditInfo(spruceArray[i]);
+            break;
+        }
+    }
+
+    for(var i =0 ; i < fermArray.length; i++)
+    {
+        console.log(fermArray[i].id);
+        if(fermArray[i].id == document.getElementById("nameArray").options[document.getElementById("nameArray").selectedIndex].keys)
+        {
+            onViewEditInfo(fermArray[i]);
+            break;
+        }
+    }
+}
+
+function getCurrentIndexSelect(value){
+    var objSel = document.getElementById("applicationArray"); 
+    var iIndex = -1;
+
+    console.log(objSel);
+
+    console.log('fing string = ' + value + '  options size = ' + objSel.options.length);
+    for(var i = 0; i < objSel.options.length; i++){
+        console.log('curr string = ' + objSel.options[i].value);
+        if(objSel.options[i].value == value){
+            iIndex = i;
+            break;
+        }
+    }
+
+    return iIndex;
+}
+
+function onViewEditInfo(obj){
+
+    console.log("onViewEditInfo");
+    console.log(obj.name);
+    console.log(obj.type);
+
+    document.getElementById('DescriptionArray').value = obj.description;
+    document.getElementById('speciesArray').value = obj.species;
+    document.getElementById('plant_classArray').value = obj.plant_class;
+    document.getElementById('discovererArray').value = obj.discoverer;
+
+    var curIndex = getCurrentIndexSelect(obj.application);
+    console.log('Cur index = ' + curIndex);
+    if(curIndex != -1)
+        document.getElementById("applicationArray").selectedIndex  = curIndex;
+
+    if(obj.type == 'fern')
+    {
+        console.log('fern1');
+        console.log(obj.age);
+
+        document.getElementById('fernFieldsArray').hidden = false;
+        document.getElementById('spruceFieldsArray').hidden = true;
+
+        document.getElementById('ageArray').value = obj.age;
+        document.getElementById('place_of_growthArray').value = obj.place_of_growth;
+    }
+    else if(obj.type == 'spruce')
+    {
+        console.log('spruce1');
+        console.log(obj.hazard_class);
+
+        document.getElementById('fernFieldsArray').hidden = true;
+        document.getElementById('spruceFieldsArray').hidden = false;
+
+        document.getElementById('hazard_classArray').value = obj.hazard_class;
+        document.getElementById('inflorescence_classArray').value = obj.inflorescence_class;
+        document.getElementById('habitatArray').value = obj.habitat;
+    }
+}
+
+function getUpdatingElement(){
+
+    for(var i =0 ; i < spruceArray.length; i++)
+    {
+        console.log(spruceArray[i].id);
+        if(spruceArray[i].id == document.getElementById("nameArray").options[document.getElementById("nameArray").selectedIndex].keys)
+        {
+            obj = spruceArray[i];
+            break;
+        }
+    }
+
+    for(var i =0 ; i < fermArray.length; i++)
+    {
+        console.log(fermArray[i].id);
+        if(fermArray[i].id == document.getElementById("nameArray").options[document.getElementById("nameArray").selectedIndex].keys)
+        {
+            obj = fermArray[i];
+            break;
+        }
+    }
+
+    obj.description = document.getElementById('DescriptionArray').value;
+    obj.species = document.getElementById('speciesArray').value;
+    obj.plant_class = document.getElementById('plant_classArray').value;
+    obj.discoverer = document.getElementById('discovererArray').value;
+    obj.application = document.getElementById("applicationArray").options[document.getElementById("applicationArray").selectedIndex].value;
+
+    if(obj.type == 'fern')
+    {
+        obj.age = document.getElementById('ageArray').value;
+        obj.place_of_growth = document.getElementById('place_of_growthArray').value;
+    }
+    else if(obj.type == 'spruce')
+    {
+        obj.hazard_class = document.getElementById('hazard_classArray').value;
+        obj.inflorescence_class = document.getElementById('inflorescence_classArray').value;
+        obj.habitat = document.getElementById('habitatArray').value;
+    }
+
+    return obj;
+}
+
 var openNewForm = document.getElementById('buttonCreate');
 var openEditForm = document.getElementById('buttonUpdate');
 var openDeleteForm = document.getElementById('buttonDelete');
@@ -450,6 +632,8 @@ var submitEditForm = document.getElementById('buttonSubmitEdit');
 var fernRadio = document.getElementById('fernRB');
 var spruceRadio = document.getElementById('spruceRB');
 
+var checkEditName = document.getElementById('nameArray');
+
 openNewForm.addEventListener('click', openForm);
 openEditForm.addEventListener('click', updateForm);
 openDeleteForm.addEventListener('click', deleteForm);
@@ -463,3 +647,5 @@ submitEditForm.addEventListener('click', submitFormEditfunc);
 
 fernRadio.addEventListener('click', checkFern);
 spruceRadio.addEventListener('click', checkSpruce);
+
+checkEditName.addEventListener('change', onEditName);

@@ -121,7 +121,7 @@ div.overlayEdit {
             div.overlay > div.login-wrapper > div.login-content > h3 {
                 color: rgb(0,0,0);
                 font-family: 'Varela Round', sans-serif;
-                font-size: 1.8em;
+                font-size: 1.3em;
                 margin: 0 0 1.25em;
                 padding: 0;
             }
@@ -144,7 +144,7 @@ div.overlayEdit {
                     div.overlayEdit > div.login-wrapper > div.login-content > h3 {
                         color: rgb(0,0,0);
                         font-family: 'Varela Round', sans-serif;
-                        font-size: 1.8em;
+                        font-size: 1.3em;
                         margin: 0 0 1.25em;
                         padding: 0;
                     }
@@ -155,7 +155,7 @@ form label {
     color: rgb(0,0,0);
     display: block;
     font-family: 'Varela Round', sans-serif;
-    font-size: 0.75em;
+    font-size: 0.80em;
     margin: .75em 0;    
 }
 
@@ -167,15 +167,15 @@ form label {
     form textarea {
         background-color: rgb(255,255,255);
         border: 1px solid rgb( 186, 186, 186 );
-        border-radius: 1px;
+        border-radius: 1px; 
         box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
-        display: block;
-        font-size: .65em;
-        margin: 6px 0 12px 0;
-        padding: .8em .55em;    
+        display: block;   
+        font-size: 1.0em;  
+/*        margin: 6px 0 12px 0; */
+        padding: .2em .55em;    
         text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
-        transition: all 400ms ease;
-        width: 90%;
+        transition: all 400ms ease; 
+        width: 90%;  
     }
 
     form input[type="text"]:focus,
